@@ -25,6 +25,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import PouchDB from './pouchdb';
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -56,6 +58,9 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 }
 
 function App(): React.JSX.Element {
+  const pouch = new PouchDB('mydb', {
+    adapter: 'react-native-sqlite',
+  });
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -77,8 +82,7 @@ function App(): React.JSX.Element {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+            Edit <Text style={styles.highlight}>App.tsx</Text> yessir
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
